@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace Person
 
 
 
-        public Person(string FirstName, string LastName, DateTime BirthDate, String BirthCity, string BirthCountry, GenderType Gender)
+        public Person(string FirstName, string LastName, DateTime BirthDate, string BirthCity, string BirthCountry, GenderType Gender)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
@@ -105,8 +106,9 @@ namespace Person
                 // create an instance of CodiceFiscale class
                 // use CodiceFiscale class to generate the Fiscal code
                 CodiceFiscaleUtility.CodiceFiscale FiscalCode;
-                FiscalCode = new CodiceFiscaleUtility.CodiceFiscale(this.LastName, this.FirstName, gender, BirthDate, BirthCity, BirthCountry, 0);
-                result = FiscalCode.Codice;
+
+                FiscalCode = new CodiceFiscaleUtility.CodiceFiscale(this.LastName, this.FirstName, gender, this.BirthDate, this.BirthCity, this.BirthCountry, 0);
+                result = FiscalCode.CodiceNormalizzato;
             }
 
             return result;
@@ -126,6 +128,41 @@ namespace Person
             return age;
         }
 
+        public int menu()
+        {
+            int choice;
+            
+            Console.WriteLine("Choose from the following options: ");
+            Console.WriteLine("1) Register a new user: ");
+            Console.WriteLine("2) Show Tax Code;");
+            Console.WriteLine("3) Show age. ");
+            Console.WriteLine("4) Show data. ");
+
+            choice = Convert.ToInt32(Console.ReadLine());
+            
+
+            return choice;
+        }
+        
+        public string genderInString()
+        {
+            if (this.Gender == GenderType.Male)
+                return "Male";
+            else
+                return "Female";
+        }
+
+        public void Print()
+        {
+            Console.WriteLine("First Name: " + this.FirstName);
+            Console.WriteLine("Last Name: " + this.LastName);
+            Console.WriteLine("Birth Date: " + this.BirthDate);
+            Console.WriteLine("Birth City: " + this.BirthCity);
+            Console.WriteLine("Birth Country: " + this.BirthCountry);
+            Console.WriteLine("Gender: " + this.genderInString());
+            Console.WriteLine("Tax Code: " + this.FiscalCode());
+        }
+        
         #endregion
     }
 

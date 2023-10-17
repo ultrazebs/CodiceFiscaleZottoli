@@ -26,7 +26,7 @@ namespace testCF
             myPerson = new Person.Person();
 
             // test parameters constructor
-            myPerson = new Person.Person("Riccardo", "Zottoli", new DateTime(2003, 6, 27), "Scandiano", "RE", 0);
+            myPerson = new Person.Person("Riccardo", "Zottoli", new DateTime(2003, 6, 27), "Scandiano", "RE", Person.Person.GenderType.Male);
 
             if(myPerson.FiscalCode() != "ZTTRCR03H27I496U")
             {
