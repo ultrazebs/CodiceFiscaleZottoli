@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Person
 {
+    /// <summary>
+    /// Manages personal information
+    /// </summary>
     internal class Person
     {
+
     }
 }
